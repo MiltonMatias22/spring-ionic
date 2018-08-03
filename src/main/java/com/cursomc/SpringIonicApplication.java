@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cursomc.domain.Categoria;
 import com.cursomc.domain.Cidade;
+import com.cursomc.domain.Cliente;
+import com.cursomc.domain.Endereco;
 import com.cursomc.domain.Estado;
 import com.cursomc.domain.Produto;
+import com.cursomc.domain.enums.TipoCliente;
 import com.cursomc.services.repositories.CategoriaRepository;
 import com.cursomc.services.repositories.CidadeRepository;
+import com.cursomc.services.repositories.ClienteRepository;
+import com.cursomc.services.repositories.EnderecoRepository;
 import com.cursomc.services.repositories.EstadoRepository;
 import com.cursomc.services.repositories.ProdutoRepository;
 
@@ -35,6 +40,12 @@ public class SpringIonicApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -76,6 +87,24 @@ public class SpringIonicApplication implements CommandLineRunner{
 		
 		this.cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 		/*----------------- fim cidade e estado -----------------*/
+		
+		/*---------------------cliente Endereco----------------*/
+		
+		Cliente cliente = new Cliente(null, "Maria", "@Maria.com", "11122233344", TipoCliente.PESSOAFISICA);
+		
+		cliente.getTelefones().addAll(Arrays.asList("982664367","982664368"));
+		
+		Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "66025160", cliente, cidade1);
+		Endereco endereco2 = new Endereco(null, "AV. Motas", "105", "Sala 800", "Centro", "66025160", cliente, cidade2);
+		
+		cliente.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
+		
+		this.clienteRepository.saveAll(Arrays.asList(cliente));
+		
+		this.enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
+		
+		/*--------------------fim cliente e endereço ------------------------*/
+		
 		
 	}
 }
