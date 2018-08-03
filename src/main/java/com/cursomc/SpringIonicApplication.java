@@ -1,5 +1,6 @@
 package com.cursomc;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.cursomc.domain.Cidade;
 import com.cursomc.domain.Cliente;
 import com.cursomc.domain.Endereco;
 import com.cursomc.domain.Estado;
+import com.cursomc.domain.PagamentoBoleto;
+import com.cursomc.domain.PagamentoCartao;
+import com.cursomc.domain.Pagamento;
+import com.cursomc.domain.Pedido;
 import com.cursomc.domain.Produto;
+import com.cursomc.domain.enums.EstadoPagamento;
 import com.cursomc.domain.enums.TipoCliente;
 import com.cursomc.services.repositories.CategoriaRepository;
 import com.cursomc.services.repositories.CidadeRepository;
 import com.cursomc.services.repositories.ClienteRepository;
 import com.cursomc.services.repositories.EnderecoRepository;
 import com.cursomc.services.repositories.EstadoRepository;
+import com.cursomc.services.repositories.PagamentoRepository;
+import com.cursomc.services.repositories.PedidoRepository;
 import com.cursomc.services.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -46,6 +54,12 @@ public class SpringIonicApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -104,6 +118,27 @@ public class SpringIonicApplication implements CommandLineRunner{
 		this.enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 		
 		/*--------------------fim cliente e endereço ------------------------*/
+		
+		/* ------------- Pedido e pagamento --------------*/
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Pedido pedido1 = new Pedido(null, sdf.parse("30/09/2017 10:30"), cliente, endereco1);
+		Pedido pedido2 = new Pedido(null, sdf.parse("10/10/2017 10:30"), cliente, endereco2);
+		
+		Pagamento pagametocartao = new PagamentoCartao(null, EstadoPagamento.QUITADO, pedido1, 6);
+		pedido1.setPagamento(pagametocartao);
+		Pagamento pagamentoBoleto = new PagamentoBoleto(null, EstadoPagamento.PENDENTE, pedido2,
+				sdf.parse("20/10/2017 00:00"), null);		
+		pedido2.setPagamento(pagamentoBoleto);
+		
+		cliente.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
+		
+		this.pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
+		
+		this.pagamentoRepository.saveAll(Arrays.asList(pagametocartao, pagamentoBoleto));
+		
+		/*--------------------fim Pedido e pagamento ---------------*/
 		
 		
 	}
