@@ -13,6 +13,7 @@ import com.cursomc.domain.Cidade;
 import com.cursomc.domain.Cliente;
 import com.cursomc.domain.Endereco;
 import com.cursomc.domain.Estado;
+import com.cursomc.domain.ItemPedido;
 import com.cursomc.domain.PagamentoBoleto;
 import com.cursomc.domain.PagamentoCartao;
 import com.cursomc.domain.Pagamento;
@@ -25,6 +26,7 @@ import com.cursomc.services.repositories.CidadeRepository;
 import com.cursomc.services.repositories.ClienteRepository;
 import com.cursomc.services.repositories.EnderecoRepository;
 import com.cursomc.services.repositories.EstadoRepository;
+import com.cursomc.services.repositories.ItemPedidoRepository;
 import com.cursomc.services.repositories.PagamentoRepository;
 import com.cursomc.services.repositories.PedidoRepository;
 import com.cursomc.services.repositories.ProdutoRepository;
@@ -60,6 +62,9 @@ public class SpringIonicApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository; 
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -140,6 +145,21 @@ public class SpringIonicApplication implements CommandLineRunner{
 		
 		/*--------------------fim Pedido e pagamento ---------------*/
 		
+		/*-------------- ItemPedido -------------------*/
 		
+		ItemPedido itemPedido1 = new ItemPedido(pedido1, prod1, 0.0, 1, 2000.0);
+		ItemPedido itemPedido2 = new ItemPedido(pedido1, prod3, 0.0, 2, 80.0);
+		ItemPedido itemPedido3 = new ItemPedido(pedido2, prod2, 100.0, 1, 800.0);
+		
+		pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
+		pedido2.getItens().addAll(Arrays.asList(itemPedido3));
+		
+		prod1.getItens().addAll(Arrays.asList(itemPedido1));
+		prod2.getItens().addAll(Arrays.asList(itemPedido3));
+		prod3.getItens().addAll(Arrays.asList(itemPedido2));
+		
+		this.itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
+				
+		/*--------------------fim ItemPedido ---------------*/
 	}
 }
