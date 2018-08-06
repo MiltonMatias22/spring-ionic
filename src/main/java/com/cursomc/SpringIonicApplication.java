@@ -72,6 +72,11 @@ public class SpringIonicApplication implements CommandLineRunner{
 		/*Categoria */
 		Categoria cat1 = new Categoria(null, "Informática");		
 		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat3 = new Categoria(null, "Eletrônico");		
+		Categoria cat4 = new Categoria(null, "Roupas");
+		Categoria cat5 = new Categoria(null, "Sporte");		
+		Categoria cat6 = new Categoria(null, "Lazer");
+		Categoria cat7 = new Categoria(null, "Cozinha");
 		
 		Produto prod1 = new Produto(null, "Computador", 2000.0);
 		Produto prod2 = new Produto(null, "Impressora", 800.0);
@@ -84,7 +89,7 @@ public class SpringIonicApplication implements CommandLineRunner{
 		prod2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		prod3.getCategorias().addAll(Arrays.asList(cat1));
 		
-		this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6,cat7));
 		
 		this.produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
 		
