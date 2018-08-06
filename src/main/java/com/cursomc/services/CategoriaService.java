@@ -1,5 +1,6 @@
 package com.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,11 @@ public class CategoriaService {
 		try {
 			this.repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("ERRO ou remover registro, categoria está vinculada a produtos!");
+			throw new DataIntegrityException("ERRO ao remover registro, categoria está vinculada a produtos!");
 		}
+	}
+
+	public List<Categoria> buscarTodos() {
+		return this.repository.findAll();
 	}
 }
