@@ -21,15 +21,15 @@ import com.cursomc.domain.Pedido;
 import com.cursomc.domain.Produto;
 import com.cursomc.domain.enums.EstadoPagamento;
 import com.cursomc.domain.enums.TipoCliente;
-import com.cursomc.services.repositories.CategoriaRepository;
-import com.cursomc.services.repositories.CidadeRepository;
-import com.cursomc.services.repositories.ClienteRepository;
-import com.cursomc.services.repositories.EnderecoRepository;
-import com.cursomc.services.repositories.EstadoRepository;
-import com.cursomc.services.repositories.ItemPedidoRepository;
-import com.cursomc.services.repositories.PagamentoRepository;
-import com.cursomc.services.repositories.PedidoRepository;
-import com.cursomc.services.repositories.ProdutoRepository;
+import com.cursomc.repositories.CategoriaRepository;
+import com.cursomc.repositories.CidadeRepository;
+import com.cursomc.repositories.ClienteRepository;
+import com.cursomc.repositories.EnderecoRepository;
+import com.cursomc.repositories.EstadoRepository;
+import com.cursomc.repositories.ItemPedidoRepository;
+import com.cursomc.repositories.PagamentoRepository;
+import com.cursomc.repositories.PedidoRepository;
+import com.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class SpringIonicApplication implements CommandLineRunner{
@@ -114,7 +114,7 @@ public class SpringIonicApplication implements CommandLineRunner{
 		
 		/*---------------------cliente Endereco----------------*/
 		
-		Cliente cliente = new Cliente(null, "Maria", "@Maria.com", "11122233344", TipoCliente.PESSOAFISICA);
+		Cliente cliente = new Cliente(null, "Tamara Matias", "tamara@gmail.com", "11122233344", TipoCliente.PESSOAFISICA);
 		
 		cliente.getTelefones().addAll(Arrays.asList("982664367","982664368"));
 		

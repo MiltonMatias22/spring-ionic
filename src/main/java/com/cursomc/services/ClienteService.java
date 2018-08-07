@@ -17,10 +17,10 @@ import com.cursomc.domain.Endereco;
 import com.cursomc.domain.enums.TipoCliente;
 import com.cursomc.dto.ClienteDTO;
 import com.cursomc.dto.ClienteNewDTO;
+import com.cursomc.repositories.ClienteRepository;
+import com.cursomc.repositories.EnderecoRepository;
 import com.cursomc.services.exception.DataIntegrityException;
 import com.cursomc.services.exception.ObjectNotFoundException;
-import com.cursomc.services.repositories.ClienteRepository;
-import com.cursomc.services.repositories.EnderecoRepository;
 
 @Service
 public class ClienteService {
