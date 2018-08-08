@@ -56,6 +56,11 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 		this.enderecoEntrega = enderecoEntrega;
 	}
+	
+	public Double getValorTotal() {		
+		double soma = this.itens.stream().mapToDouble(x -> x.getSubTotal()).sum();
+		return soma;		
+	}
 
 	public Integer getId() {
 		return id;
