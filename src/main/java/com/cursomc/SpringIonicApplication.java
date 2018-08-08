@@ -72,26 +72,48 @@ public class SpringIonicApplication implements CommandLineRunner{
 		/*Categoria */
 		Categoria cat1 = new Categoria(null, "Informática");		
 		Categoria cat2 = new Categoria(null, "Escritório");
-		Categoria cat3 = new Categoria(null, "Eletrônico");		
-		Categoria cat4 = new Categoria(null, "Roupas");
-		Categoria cat5 = new Categoria(null, "Sporte");		
-		Categoria cat6 = new Categoria(null, "Lazer");
-		Categoria cat7 = new Categoria(null, "Cozinha");
+		Categoria cat3 = new Categoria(null, "Cama mesa e banho");		
+		Categoria cat4 = new Categoria(null, "Eletrônicos");
+		Categoria cat5 = new Categoria(null, "Jardinagem");		
+		Categoria cat6 = new Categoria(null, "Decoração");
+		Categoria cat7 = new Categoria(null, "Perfumaria");
 		
 		Produto prod1 = new Produto(null, "Computador", 2000.0);
 		Produto prod2 = new Produto(null, "Impressora", 800.0);
 		Produto prod3 = new Produto(null, "Mouse", 70.0);
+		Produto prod4 = new Produto(null, "Mesa de Escritório", 300.0);
+		Produto prod5 = new Produto(null, "Toalha", 50.0);
+		Produto prod6 = new Produto(null, "Colcha", 300.0);
+		Produto prod7 = new Produto(null, "TV true color", 1200.0);
+		Produto prod8 = new Produto(null, "Roçadeira", 800.0);
+		Produto prod9 = new Produto(null, "Abajour", 100.0);
+		Produto prod10 = new Produto(null, "Pendente", 180.0);
+		Produto prod11 = new Produto(null, "Champoo", 90.0);
 		
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
-		cat2.getProdutos().addAll(Arrays.asList(prod2));
-		
-		prod1.getCategorias().addAll(Arrays.asList(cat1));
-		prod2.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		prod3.getCategorias().addAll(Arrays.asList(cat1));
+		cat2.getProdutos().addAll(Arrays.asList(prod2, prod4));
+		cat3.getProdutos().addAll(Arrays.asList(prod5, prod6));
+		cat4.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3, prod7));
+		cat5.getProdutos().addAll(Arrays.asList(prod8));
+		cat6.getProdutos().addAll(Arrays.asList(prod9, prod10));
+		cat7.getProdutos().addAll(Arrays.asList(prod11));
+
+		prod1.getCategorias().addAll(Arrays.asList(cat1, cat4));
+		prod2.getCategorias().addAll(Arrays.asList(cat1, cat2, cat4));
+		prod3.getCategorias().addAll(Arrays.asList(cat1, cat4));
+		prod4.getCategorias().addAll(Arrays.asList(cat2));
+		prod5.getCategorias().addAll(Arrays.asList(cat3));
+		prod6.getCategorias().addAll(Arrays.asList(cat3));
+		prod7.getCategorias().addAll(Arrays.asList(cat4));
+		prod8.getCategorias().addAll(Arrays.asList(cat5));
+		prod9.getCategorias().addAll(Arrays.asList(cat6));
+		prod10.getCategorias().addAll(Arrays.asList(cat6));
+		prod11.getCategorias().addAll(Arrays.asList(cat7));
 		
 		this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6,cat7));
 		
-		this.produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
+		this.produtoRepository.saveAll(Arrays.asList(
+				prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod1));
 		
 		/*------------------- fim categoria ----------------*/
 		
