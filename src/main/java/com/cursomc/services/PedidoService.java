@@ -76,7 +76,8 @@ public class PedidoService {
 		this.itemPedidoRepository.saveAll(pedido.getItens());
 		
 		//*Enviando email
-		this.emailService.sendOrderConfirmationEmail(pedido);
+		// this.emailService.sendOrderConfirmationEmail(pedido);
+		this.emailService.sendOrderConfirmationHtmlEmail(pedido);
 		
 		return pedido;
 	}
