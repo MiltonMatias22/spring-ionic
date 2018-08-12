@@ -27,6 +27,10 @@ public class ClienteNewDTO implements Serializable {
 	
 	private Integer tipoCliente;
 	
+	@NotEmpty(message = "Campo Obrigatório.")
+	@Length(min = 5, max = 20, message = "O tamanho deve estar entre 6 e 20 caracteres.")
+	private String senha;
+	
 	/*Dados do endereço*/
 	
 	@NotEmpty(message = "Campo Obrigatório.")
@@ -87,6 +91,14 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setTipoCliente(Integer tipoCliente) {
 		this.tipoCliente = tipoCliente;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getLogradouro() {
